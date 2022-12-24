@@ -14,7 +14,7 @@ def get_argument() -> argparse.Namespace:
     group = parser.add_argument_group("to browse local files")
     group.add_argument("keys", nargs='+', help="keyword to search")
     group.add_argument("-p", "--path", metavar='', dest="path", default=os.getcwd(), required=True, help="root path")
-    group.add_argument("-n", "--no-prompt", dest="noprompt", default=False, action="store_false",
+    group.add_argument("-n", "--no-prompt", dest="noprompt", default=True, action="store_false",
                        help="do not interactively prompt for choice")
     parser.add_argument_group(group)
     options = parser.parse_args()
