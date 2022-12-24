@@ -108,9 +108,9 @@ class Local:
             self._set_values(**_kwargs)
         _data = Lu.getdata(self.root, self.option, self.refresh)
         self.result = self._categorize(*keys, data=self._filter(_data, *keys))
-        if "display" in kwargs:
+        if "display" in kwargs and kwargs.get("display") is True:
             self.display()
-        if "prompt" in kwargs:
+        if "prompt" in kwargs and kwargs.get("prompt") is True:
             self.prompt()
         return self
 
