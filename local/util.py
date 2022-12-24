@@ -50,8 +50,8 @@ class LocalUtil:
         return folders_list, files_list
 
     @staticmethod
-    def analyse(_root: AnyStr | os.PathLike[AnyStr],
-                option: _OPT = 'all') -> None:
+    def _analyse(_root: AnyStr | os.PathLike[AnyStr],
+                 option: _OPT = 'all') -> None:
         folders, files = LocalUtil._get(_root, option)
         _store_obj = []
         _d = dict()
@@ -71,11 +71,11 @@ class LocalUtil:
     def getdata(_root: AnyStr | os.PathLike[AnyStr],
                 option: _OPT = 'all', refresh: bool = False) -> list:
         if refresh:
-            LocalUtil.analyse(_root=_root, option=option)
+            LocalUtil._analyse(_root=_root, option=option)
         data = list()
         for path in LocalUtil._getpath(_root, option):
             if not os.path.exists(path):
-                LocalUtil.analyse(_root=_root, option=option)
+                LocalUtil._analyse(_root=_root, option=option)
             _data_dict = pa.Table.from_pandas(df=parquet.read(path=path)).to_pydict()
             for opt in ['folders', 'files']:
                 if opt in _data_dict:

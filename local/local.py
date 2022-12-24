@@ -5,7 +5,7 @@ from srutil import util
 from pathlib import Path
 from typing import AnyStr
 
-from util import _OPT, LocalUtil as Lu
+from .util import _OPT, LocalUtil as Lu
 
 
 class Local:
@@ -108,9 +108,10 @@ class Local:
             self._set_values(**_kwargs)
         _data = Lu.getdata(self.root, self.option, self.refresh)
         self.result = self._categorize(*keys, data=self._filter(_data, *keys))
-        _option =  self.display if "display" in kwargs else self.prompt if "prompt" in kwargs else None
-        if _option:
-            _option()
+        if "display" in kwargs:
+            self.display()
+        if "prompt" in kwargs:
+            self.prompt()
         return self
 
     def display(self) -> None:
@@ -146,8 +147,3 @@ class Local:
                 util.executesyscmd([_open_cmd, Path(file)])
             except FileNotFoundError:
                 os.startfile(file)
-
-
-if __name__ == '__main__':
-    local = Local("d:").search("batman", display=True)
-    local.prompt()
