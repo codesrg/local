@@ -147,8 +147,3 @@ class Local:
                 util.executesyscmd([_open_cmd, Path(file)])
             except FileNotFoundError:
                 os.startfile(file)
-
-
-if __name__ == '__main__':
-    local = Local("d:").search("batman", display=True)
-    local.prompt()
