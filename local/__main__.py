@@ -5,8 +5,7 @@ import sys
 import argparse
 from srutil import util
 
-from local import Local
-__version__, __package__ = "1.0.0", "local"
+from . import Local, __version__, __package__
 
 
 def get_argument() -> argparse.Namespace:

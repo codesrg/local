@@ -5,7 +5,7 @@ from srutil import util
 from pathlib import Path
 from typing import AnyStr
 
-from util import _OPT, LocalUtil as Lu
+from .util import _OPT, LocalUtil as Lu
 
 
 class Local:
